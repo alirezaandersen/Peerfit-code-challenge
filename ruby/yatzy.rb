@@ -66,41 +66,40 @@ class Yatzy
       return highest_pair.max.sum
   end
 
-  def self.two_pair( d1,  d2,  d3,  d4,  d5)
-    counts = [0]*6
-    counts[d1-1] += 1
-    counts[d2-1] += 1
-    counts[d3-1] += 1
-    counts[d4-1] += 1
-    counts[d5-1] += 1
-    n = 0
-    score = 0
-    for i in Array 0..5
-      if (counts[6-i-1] >= 2)
-        n = n+1
-        score += (6-i)
+  def two_pair()
+    a = @dice.group_by {|x| x}.values
+    b = a.each  do |x|
+      if x.size > 2
+        x.pop
       end
     end
-    if (n == 2)
-      return score * 2
-    else
-      return 0
-    end
+    hightest_pair_score =  b.map{ |num| num.sum}.take(2).sum
+    return hightest_pair_score
   end
 
-  def self.four_of_a_kind( _1,  _2,  d3,  d4,  d5)
-    tallies = [0]*6
-    tallies[_1-1] += 1
-    tallies[_2-1] += 1
-    tallies[d3-1] += 1
-    tallies[d4-1] += 1
-    tallies[d5-1] += 1
-    for i in (0..6)
-      if (tallies[i] >= 4)
-        return (i+1) * 4
+  def four_of_a_kind()
+    # binding.pry
+    a = @dice.group_by {|x| x}.values
+    b = a.each  do |x|
+      if x.size > 4
+        x.pop
       end
     end
-    return 0
+    # binding.pry
+    hightest_pair_score =  b.map{ |num| num.sum}.take(2).sum
+    return hightest_pair_score
+    # tallies = [0]*6
+    # tallies[_1-1] += 1
+    # tallies[_2-1] += 1
+    # tallies[d3-1] += 1
+    # tallies[d4-1] += 1
+    # tallies[d5-1] += 1
+    # for i in (0..6)
+    #   if (tallies[i] >= 4)
+    #     return (i+1) * 4
+    #   end
+    # end
+    # return 0
   end
 
   def self.three_of_a_kind( d1,  d2,  d3,  d4,  d5)
