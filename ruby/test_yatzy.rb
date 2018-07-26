@@ -60,21 +60,21 @@ class YatzyTest < Test::Unit::TestCase
   end
 
   def test_two_Pair
-    assert_equal 16, Yatzy.two_pair(3,3,5,4,5)
-    assert_equal 16, Yatzy.two_pair(3,3,5,5,5)
+    assert_equal 16, Yatzy.new(3,3,5,5,5).two_pair
+    assert_equal 16, Yatzy.new(3,3,5,4,5).two_pair
   end
 
   def test_three_of_a_kind()
-    assert 9 == Yatzy.three_of_a_kind(3,3,3,4,5)
-    assert 15 == Yatzy.three_of_a_kind(5,3,5,4,5)
-    assert 9 == Yatzy.three_of_a_kind(3,3,3,3,5)
+    assert 9 == Yatzy.new(3,3,3,4,5)three_of_a_kind
+    assert 15 == Yatzy.new(5,3,5,4,5)three_of_a_kind
+    assert 9 == Yatzy.new(3,3,3,3,5)three_of_a_kind
   end
 
   def test_four_of_a_knd
-    assert 12 == Yatzy.four_of_a_kind(3,3,3,3,5)
-    assert 20 == Yatzy.four_of_a_kind(5,5,5,4,5)
-    assert 9 == Yatzy.three_of_a_kind(3,3,3,3,3)
-    assert 12 == Yatzy.four_of_a_kind(3,3,3,3,3)
+    assert 12 == Yatzy.new(3,3,3,3,5).four_of_a_kind
+    assert 20 == Yatzy.new(5,5,5,4,5).four_of_a_kind
+    assert 9 == Yatzy.new(3,3,3,3,3)three_of_a_kind
+    assert 12 == Yatzy.new(3,3,3,3,3).four_of_a_kind
   end
 
   def test_smallStraight()
