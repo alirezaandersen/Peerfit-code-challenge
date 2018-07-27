@@ -30,6 +30,7 @@ class YatzyTest < Test::Unit::TestCase
 
   def test_threes
     assert 6 == Yatzy.new(1,2,3,2,3).threes
+    assert 3 == Yatzy.new(6,5,4,1,3).threes
     assert 12 == Yatzy.new(2,3,3,3,3).threes
   end
 
