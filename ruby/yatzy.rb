@@ -2,30 +2,20 @@ require 'pry'
 class Yatzy
 
   def initialize(d1, d2, d3, d4, d5)
-    # @dice = [0]*5
     @dice = [d1, d2, d3, d4, d5]
-    # @dice[0] = d1
-    # @dice[1] = d2
-    # @dice[2] = d3
-    # @dice[3] = d4
-    # @dice[4] = _5
   end
 
   def chance
     @dice.sum
   end
 
-  def self.yatzy(dice)
-    counts = [0]*(dice.length+1)
-    for die in dice do
-      counts[die-1] += 1
+  def yatzy
+    a = @dice.group_by { |v| v }.values
+    if a.size == 1
+      return 50
+    else
+      return 0
     end
-    for i in 0..counts.size do
-      if counts[i] == 5
-        return 50
-      end
-    end
-    return 0
   end
 
   def ones
@@ -33,44 +23,37 @@ class Yatzy
   end
 
   def twos
-    num_of_twos = @dice.count(2)
-    sum = 2 * num_of_twos
-    return sum
+    2 * @dice.count(2)
   end
 
   def threes
-    num_of_threes = @dice.count(3)
-    sum = 3 * num_of_threes
-    return sum
+    3 * @dice.count(3)
   end
 
   def fours
-    num_of_fours = @dice.count(4)
-    sum = 4 * num_of_fours
-    return sum
+    4 * @dice.count(4)
   end
 
   def fives
-    num_of_fives = @dice.count(5)
-    sum = 5 * num_of_fives
-    return sum
+    5 * @dice.count(5)
   end
 
   def sixes
-    num_of_sixes = @dice.count(6)
-    sum = 6 * num_of_sixes
-    return sum
+    6 * @dice.count(6)
   end
 
   def score_pair
-    highest_pair = @dice.group_by {|x| x}.values
-      highest_pair.each do | num |
+      yatzy_sets.each do | num |
       if num.length > 1
-      return highest_pair.max.sum
+        return yatzy_sets.max.sum
       else
         return 0
       end
     end
+  end
+
+  def yatzy_sets
+    @dice.group_by {|x| x}.values
   end
 
   def two_pair
