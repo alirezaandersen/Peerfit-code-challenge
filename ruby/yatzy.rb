@@ -43,12 +43,20 @@ class Yatzy
   end
 
   def score_pair
-      yatzy_sets.each do | num |
-      if num.length > 1
-        return yatzy_sets.max.sum
+    duces = yatzy_sets.sort_by { |x| x.length }
+    pairs = []
+    odds = []
+    duces.each do |x|
+      if x.length == 2
+        pairs << x
       else
-        return 0
+        odds << x
       end
+    end
+    if odds.length == 5
+      return 0
+    else
+      return pairs.max.sum
     end
   end
 
@@ -71,7 +79,6 @@ class Yatzy
   end
 
   def three_of_a_kind
-    # a = @dice.group_by {|x| x}.values
      threes_company = yatzy_sets.sort_by { |x| x.length }
      if threes_company.last.take(3).length == 3
        return threes_company.last.take(3).sum
@@ -97,6 +104,7 @@ class Yatzy
   end
 
   def fullHouse
+    # binding.pry
     three_of_a_kind + score_pair
   end
 end
