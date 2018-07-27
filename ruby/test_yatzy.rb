@@ -57,6 +57,8 @@ class YatzyTest < Test::Unit::TestCase
     assert 6 == Yatzy.new(3,4,3,5,6).score_pair
     assert 10 == Yatzy.new(5,3,3,3,5).score_pair
     assert 12 == Yatzy.new(5,3,6,6,5).score_pair
+    assert 0 == Yatzy.new(2,3,4,5,6).score_pair
+
   end
 
   def test_two_Pair
@@ -64,33 +66,35 @@ class YatzyTest < Test::Unit::TestCase
     assert_equal 16, Yatzy.new(3,3,5,4,5).two_pair
   end
 
-  def test_three_of_a_kind()
+  def test_three_of_a_kind
     assert 9 == Yatzy.new(3,3,3,4,5).three_of_a_kind
     assert 15 == Yatzy.new(5,3,5,4,5).three_of_a_kind
     assert 9 == Yatzy.new(3,3,3,3,5).three_of_a_kind
-    assert 9 == Yatzy.new(3,3,3,3,3).three_of_a_kind
+    assert 9 == Yatzy.new(3,3,3,6,6).three_of_a_kind
+    assert 0 == Yatzy.new(1,2,5,6,6).three_of_a_kind
+    assert 6 == Yatzy.new(6,2,2,2,6).three_of_a_kind
   end
 
-  def test_four_of_a_knd
+  def test_four_of_a_kind
     assert 12 == Yatzy.new(3,3,3,3,5).four_of_a_kind
     assert 20 == Yatzy.new(5,5,5,4,5).four_of_a_kind
     assert 12 == Yatzy.new(3,3,3,3,3).four_of_a_kind
   end
 
   def test_smallStraight()
-    assert 15 == Yatzy.smallStraight(1,2,3,4,5)
-    assert 15 == Yatzy.smallStraight(2,3,4,5,1)
-    assert 0 == Yatzy.smallStraight(1,2,2,4,5)
+    assert 15 == Yatzy.new(1,2,3,4,5).smallStraight
+    assert 15 == Yatzy.new(2,3,4,5,1).smallStraight
+    assert 0 == Yatzy.new(1,2,2,4,5).smallStraight
   end
 
   def test_largeStraight
-    assert 20 == Yatzy.largeStraight(6,2,3,4,5)
-    assert 20 == Yatzy.largeStraight(2,3,4,5,6)
-    assert 0 == Yatzy.largeStraight(1,2,2,4,5)
+    assert 20 == Yatzy.new(6,2,3,4,5).largeStraight
+    assert 20 == Yatzy.new(2,3,4,5,6).largeStraight
+    assert 0 == Yatzy.new(1,2,2,4,5).largeStraight
   end
 
   def test_fullHouse()
-    assert 18 == Yatzy.fullHouse(6,2,2,2,6)
-    assert 0 == Yatzy.fullHouse(2,3,4,5,6)
+    assert 18 == Yatzy.new(6,2,2,2,6).fullHouse
+    assert 0 == Yatzy.new(2,3,4,5,6).fullHouse
   end
 end
