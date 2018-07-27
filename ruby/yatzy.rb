@@ -57,24 +57,21 @@ class Yatzy
   end
 
   def two_pair
-    a = @dice.group_by {|x| x}.values
-    b = a.each  do |x|
+    duces = yatzy_sets.each  do |x|
       if x.size > 2
         x.pop
       end
     end
-    hightest_pair_score =  b.map{ |num| num.sum}.take(2).sum
+    hightest_pair_score =  duces.map{ |num| num.sum}.take(2).sum
     return hightest_pair_score
   end
 
   def four_of_a_kind
-    a = @dice.group_by {|x| x}.values
-    a.first.take(4).sum
+    yatzy_sets.first.take(4).sum
   end
 
   def three_of_a_kind
-    a = @dice.group_by {|x| x}.values
-     b = a.sort_by { |x| x.length }
+     b = yatzy_sets.sort_by { |x| x.length }
      if b.last.take(3).length == 3
        return b.last.take(3).sum
      else
