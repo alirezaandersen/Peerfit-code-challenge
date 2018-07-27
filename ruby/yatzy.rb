@@ -63,7 +63,13 @@ class Yatzy
 
   def score_pair()
     highest_pair = @dice.group_by {|x| x}.values
+      highest_pair.each do | num |
+      if num.length > 1
       return highest_pair.max.sum
+      else
+        return 0
+      end
+    end
   end
 
   def two_pair()
@@ -84,69 +90,31 @@ class Yatzy
 
   def three_of_a_kind()
     a = @dice.group_by {|x| x}.values
-    a.first.take(3).sum
+     b = a.sort_by { |x| x.length }
+     if b.last.take(3).length == 3
+       return b.last.take(3).sum
+     else
+       return 0
+     end
   end
 
-  def self.smallStraight( d1,  d2,  d3,  d4,  d5)
-    tallies = [0]*6
-    tallies[d1-1] += 1
-    tallies[d2-1] += 1
-    tallies[d3-1] += 1
-    tallies[d4-1] += 1
-    tallies[d5-1] += 1
-    (tallies[0] == 1 and
-      tallies[1] == 1 and
-      tallies[2] == 1 and
-      tallies[3] == 1 and
-      tallies[4] == 1) ? 15 : 0
-  end
-
-  def self.largeStraight( d1,  d2,  d3,  d4,  d5)
-    tallies = [0]*6
-    tallies[d1-1] += 1
-    tallies[d2-1] += 1
-    tallies[d3-1] += 1
-    tallies[d4-1] += 1
-    tallies[d5-1] += 1
-    if (tallies[1] == 1 and tallies[2] == 1 and tallies[3] == 1 and tallies[4] == 1 and tallies[5] == 1)
-      return 20
-    end
-    return 0
-  end
-
-  def self.fullHouse( d1,  d2,  d3,  d4,  d5)
-    tallies = []
-    _2 = false
-    i = 0
-    _2_at = 0
-    _3 = false
-    _3_at = 0
-
-    tallies = [0]*6
-    tallies[d1-1] += 1
-    tallies[d2-1] += 1
-    tallies[d3-1] += 1
-    tallies[d4-1] += 1
-    tallies[d5-1] += 1
-
-    for i in Array 0..5
-      if (tallies[i] == 2)
-        _2 = true
-        _2_at = i+1
-      end
-    end
-
-    for i in Array 0..5
-      if (tallies[i] == 3)
-        _3 = true
-        _3_at = i+1
-      end
-    end
-
-    if (_2 and _3)
-      return _2_at * 2 + _3_at * 3
+  def smallStraight()
+    if @dice.sum == 15
+      @dice.sum
     else
       return 0
     end
+  end
+
+  def largeStraight()
+    if @dice.sum == 20
+      @dice.sum
+    else
+      return 0
+    end
+  end
+
+  def fullHouse
+    three_of_a_kind + score_pair
   end
 end
