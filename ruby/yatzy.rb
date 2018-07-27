@@ -78,43 +78,13 @@ class Yatzy
   end
 
   def four_of_a_kind()
-    # binding.pry
     a = @dice.group_by {|x| x}.values
-    b = a.each  do |x|
-      if x.size > 4
-        x.pop
-      end
-    end
-    # binding.pry
-    hightest_pair_score =  b.map{ |num| num.sum}.take(2).sum
-    return hightest_pair_score
-    # tallies = [0]*6
-    # tallies[_1-1] += 1
-    # tallies[_2-1] += 1
-    # tallies[d3-1] += 1
-    # tallies[d4-1] += 1
-    # tallies[d5-1] += 1
-    # for i in (0..6)
-    #   if (tallies[i] >= 4)
-    #     return (i+1) * 4
-    #   end
-    # end
-    # return 0
+    a.first.take(4).sum
   end
 
-  def self.three_of_a_kind( d1,  d2,  d3,  d4,  d5)
-    t = [0]*6
-    t[d1-1] += 1
-    t[d2-1] += 1
-    t[d3-1] += 1
-    t[d4-1] += 1
-    t[d5-1] += 1
-    for i in [0,1,2,3,4,5]
-      if (t[i] >= 3)
-        return (i+1) * 3
-      end
-    end
-    0
+  def three_of_a_kind()
+    a = @dice.group_by {|x| x}.values
+    a.first.take(3).sum
   end
 
   def self.smallStraight( d1,  d2,  d3,  d4,  d5)
