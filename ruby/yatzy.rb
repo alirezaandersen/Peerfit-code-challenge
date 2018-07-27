@@ -70,12 +70,19 @@ class Yatzy
         x.pop
       end
     end
-    hightest_pair_score =  duces.map{ |num| num.sum}.take(2).sum
-    return hightest_pair_score
+    if yatzy_sets.first.length == 2
+     duces.map{ |num| num.sum}.take(2).sum
+    else
+      return 0
+    end
   end
 
   def four_of_a_kind
-    yatzy_sets.first.take(4).sum
+    if yatzy_sets.first.length >= 4
+      yatzy_sets.first.take(4).sum
+    else
+      return 0
+    end
   end
 
   def three_of_a_kind
@@ -104,7 +111,6 @@ class Yatzy
   end
 
   def fullHouse
-    # binding.pry
     three_of_a_kind + score_pair
   end
 end
