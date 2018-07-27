@@ -11,7 +11,7 @@ class Yatzy
     # @dice[4] = _5
   end
 
-  def chance()
+  def chance
     @dice.sum
   end
 
@@ -28,17 +28,17 @@ class Yatzy
     return 0
   end
 
-  def ones()
+  def ones
     @dice.count(1)
   end
 
-  def twos()
+  def twos
     num_of_twos = @dice.count(2)
     sum = 2 * num_of_twos
     return sum
   end
 
-  def threes()
+  def threes
     num_of_threes = @dice.count(3)
     sum = 3 * num_of_threes
     return sum
@@ -50,7 +50,7 @@ class Yatzy
     return sum
   end
 
-  def fives()
+  def fives
     num_of_fives = @dice.count(5)
     sum = 5 * num_of_fives
     return sum
@@ -62,7 +62,7 @@ class Yatzy
     return sum
   end
 
-  def score_pair()
+  def score_pair
     highest_pair = @dice.group_by {|x| x}.values
       highest_pair.each do | num |
       if num.length > 1
@@ -73,7 +73,7 @@ class Yatzy
     end
   end
 
-  def two_pair()
+  def two_pair
     a = @dice.group_by {|x| x}.values
     b = a.each  do |x|
       if x.size > 2
@@ -84,12 +84,12 @@ class Yatzy
     return hightest_pair_score
   end
 
-  def four_of_a_kind()
+  def four_of_a_kind
     a = @dice.group_by {|x| x}.values
     a.first.take(4).sum
   end
 
-  def three_of_a_kind()
+  def three_of_a_kind
     a = @dice.group_by {|x| x}.values
      b = a.sort_by { |x| x.length }
      if b.last.take(3).length == 3
@@ -99,7 +99,7 @@ class Yatzy
      end
   end
 
-  def smallStraight()
+  def smallStraight
     if @dice.sum == 15
       @dice.sum
     else
@@ -107,7 +107,7 @@ class Yatzy
     end
   end
 
-  def largeStraight()
+  def largeStraight
     if @dice.sum == 20
       @dice.sum
     else
