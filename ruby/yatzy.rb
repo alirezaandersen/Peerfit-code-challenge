@@ -71,9 +71,10 @@ class Yatzy
   end
 
   def three_of_a_kind
-     b = yatzy_sets.sort_by { |x| x.length }
-     if b.last.take(3).length == 3
-       return b.last.take(3).sum
+    # a = @dice.group_by {|x| x}.values
+     threes_company = yatzy_sets.sort_by { |x| x.length }
+     if threes_company.last.take(3).length == 3
+       return threes_company.last.take(3).sum
      else
        return 0
      end
