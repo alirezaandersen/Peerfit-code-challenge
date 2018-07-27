@@ -4,10 +4,9 @@ require 'rspec/autorun'
 
 class YatzyTest < Test::Unit::TestCase
   def test_chance_scores_sum_of_all_dice
-    expected = 15
-    actual = Yatzy.new(2,3,4,5,1).chance()
-    assert expected == actual
-    assert 16 == Yatzy.new(3,3,4,5,1).chance()
+    assert 15 == Yatzy.new(2,3,4,5,1).chance
+    assert 23 == Yatzy.new(3,6,4,5,5).chance
+    assert 16 == Yatzy.new(3,3,4,5,1).chance
   end
 
   def test_yatzy_scores_50
@@ -26,6 +25,7 @@ class YatzyTest < Test::Unit::TestCase
   def test_2s
     assert 4 == Yatzy.new(1,2,3,2,6).twos
     assert 10 == Yatzy.new(2,2,2,2,2).twos
+    assert 0 == Yatzy.new(1,3,1,3,1).twos
   end
 
   def test_threes
