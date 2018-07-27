@@ -11,11 +11,9 @@ class YatzyTest < Test::Unit::TestCase
   end
 
   def test_yatzy_scores_50
-    expected = 50
-    actual = Yatzy.yatzy([4,4,4,4,4])
-    assert expected == actual
-    assert 50 == Yatzy.yatzy([6,6,6,6,6])
-    assert 0 == Yatzy.yatzy([6,6,6,6,3])
+    assert 50 == Yatzy.new(4,4,4,4,4).yatzy
+    assert 50 == Yatzy.new(6,6,6,6,6).yatzy
+    assert 0 == Yatzy.new(6,6,6,6,3).yatzy
   end
 
   def test_1s
