@@ -56,7 +56,7 @@ class YatzyTest < Test::Unit::TestCase
     assert 10 == Yatzy.new(5,3,3,3,5).score_pair
     assert 12 == Yatzy.new(5,3,6,6,5).score_pair
     assert 0 == Yatzy.new(2,3,4,5,6).score_pair
-
+    assert 4 == Yatzy.new(4,4,4,2,2).score_pair
   end
 
   def test_two_Pair
@@ -93,6 +93,7 @@ class YatzyTest < Test::Unit::TestCase
 
   def test_fullHouse()
     assert 18 == Yatzy.new(6,2,2,2,6).fullHouse
+    assert 16 == Yatzy.new(4,4,4,2,2).fullHouse
     assert 0 == Yatzy.new(2,3,4,5,6).fullHouse
   end
 end
