@@ -60,8 +60,10 @@ class YatzyTest < Test::Unit::TestCase
   end
 
   def test_two_Pair
-    assert_equal 16, Yatzy.new(3,3,5,5,5).two_pair
-    assert_equal 16, Yatzy.new(3,3,5,4,5).two_pair
+    assert 16 == Yatzy.new(3,3,5,5,5).two_pair
+    assert 16 == Yatzy.new(3,3,5,4,5).two_pair
+    assert 22 == Yatzy.new(6,6,5,4,5).two_pair
+    assert 0 == Yatzy.new(3,3,3,1,2).two_pair
   end
 
   def test_three_of_a_kind
@@ -74,6 +76,7 @@ class YatzyTest < Test::Unit::TestCase
   end
 
   def test_four_of_a_kind
+    assert 0 == Yatzy.new(2,3,4,3,3).four_of_a_kind
     assert 12 == Yatzy.new(3,3,3,3,5).four_of_a_kind
     assert 20 == Yatzy.new(5,5,5,4,5).four_of_a_kind
     assert 12 == Yatzy.new(3,3,3,3,3).four_of_a_kind
