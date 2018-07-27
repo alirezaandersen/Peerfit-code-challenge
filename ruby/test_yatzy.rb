@@ -65,15 +65,15 @@ class YatzyTest < Test::Unit::TestCase
   end
 
   def test_three_of_a_kind()
-    assert 9 == Yatzy.new(3,3,3,4,5)three_of_a_kind
-    assert 15 == Yatzy.new(5,3,5,4,5)three_of_a_kind
-    assert 9 == Yatzy.new(3,3,3,3,5)three_of_a_kind
+    assert 9 == Yatzy.new(3,3,3,4,5).three_of_a_kind
+    assert 15 == Yatzy.new(5,3,5,4,5).three_of_a_kind
+    assert 9 == Yatzy.new(3,3,3,3,5).three_of_a_kind
+    assert 9 == Yatzy.new(3,3,3,3,3).three_of_a_kind
   end
 
   def test_four_of_a_knd
     assert 12 == Yatzy.new(3,3,3,3,5).four_of_a_kind
     assert 20 == Yatzy.new(5,5,5,4,5).four_of_a_kind
-    assert 9 == Yatzy.new(3,3,3,3,3)three_of_a_kind
     assert 12 == Yatzy.new(3,3,3,3,3).four_of_a_kind
   end
 
