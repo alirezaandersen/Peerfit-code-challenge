@@ -95,15 +95,15 @@ class Yatzy
   end
 
   def smallStraight
-    if @dice.sum == 15
-      @dice.sum
-    else
-      return 0
-    end
+    straight(15)
   end
 
   def largeStraight
-    if @dice.sum == 20
+    straight(20)
+  end
+
+  def straight(num)
+    if @dice.sum == num
       @dice.sum
     else
       return 0
